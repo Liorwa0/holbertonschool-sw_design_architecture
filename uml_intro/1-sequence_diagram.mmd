@@ -2,26 +2,9 @@ sequenceDiagram
     actor User
     participant Library
     participant Book
-    participant Loan
 
     User->>Library: create_loan()
-    activate Library
     Library->>Book: mark_as_unavailable()
-    activate Book
-    Book-->>Library: ok
-    deactivate Book
+    create participant Loan
     Library->>Loan: create_loan()
-    activate Loan
-    Loan-->>Library: loan
-    deactivate Loan
-    Library-->>User: loan
-    deactivate Library
-
-    User->>Loan: close_loan()
-    activate Loan
-    Loan->>Book: mark_as_available()
-    activate Book
-    Book-->>Loan: ok
-    deactivate Book
-    Loan-->>User: closed
-    deactivate Loan
+    Library-->>User: loan created
