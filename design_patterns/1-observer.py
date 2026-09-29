@@ -56,9 +56,13 @@ class NewsSubject:
         """Unsubscribe observer."""
         self._subject.unsubscribe(observer)
 
+    def notify(self, topic: str, data: str) -> None:
+        """Notify observers via internal subject."""
+        self._subject.notify(topic, data)
+
     def publish(self, topic: str, data: str) -> None:
         """Publish news topic and data."""
-        self._subject.notify(topic, data)
+        self.notify(topic, data)
 
 
 class LogObserver(Observer):
